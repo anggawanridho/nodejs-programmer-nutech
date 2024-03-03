@@ -14,7 +14,6 @@ export const userRegister = async (req, res) => {
       status: 400,
       message: "Terdapat error pada proses registrasi",
       error: {
-        path: err.meta.target,
         message: err.message,
       },
     });

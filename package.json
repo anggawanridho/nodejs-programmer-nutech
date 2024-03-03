@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start-prod": "npx prisma generate && npx prisma migrate deploy && nodemon ./bin/www",
-    "start-debug": "DEBUG=nodejs-programmer-nutech:server nodemon ./bin/www"
+    "start-prod": "npx prisma generate && nodemon ./bin/www",
+    "start-debug": "npx prisma generate && DEBUG=nodejs-programmer-nutech:server nodemon ./bin/www"
   },
   "type": "module",
   "dependencies": {
