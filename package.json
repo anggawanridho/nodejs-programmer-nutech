@@ -6,7 +6,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "start-prod": "npx prisma generate && nodemon ./bin/www",
+    "start": "npx prisma generate && nodemon ./bin/www",
     "start-debug": "npx prisma generate && DEBUG=nodejs-programmer-nutech:server nodemon ./bin/www"
   },
   "type": "module",
