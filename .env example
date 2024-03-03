@@ -1,0 +1,5 @@
+# server configuration
+PORT="3000"
+DATABASE_URL="mysql://johndoe:randompassword@localhost:3306/yourdb"
+CLOUDINARY_URL="cloudinary://1234567898765432:CRt5wf2K5BB1GrGUtQQbwrfI3gk@ct3ktafkk"
+TOKEN_SECRET="thisisasecrettoken"
