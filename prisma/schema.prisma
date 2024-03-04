@@ -6,19 +6,42 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id              Int     @id @default(autoincrement())
-  email           String  @unique
+  email           String      @id @unique
   first_name      String
   last_name       String
   password        String
-  profile_image   String  @default("https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png")
+  profile_image   String      @default("https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png")
+  balance         Balance?
+  transactions    Transaction[]
   @@map("users")
+}
+
+model Balance {
+  id      Int     @id @default(autoincrement())
+  balance  Float   @default(0)
+  user    User    @relation(fields: [userEmail], references: [email])
+  userEmail  String     @unique
+  @@map("balances")
+}
+
+model Transaction {
+  id                Int       @id @default(autoincrement())
+  invoice_number    String
+  service_code      String
+  service_name      String
+  transaction_type  String
+  total_amount      Float
+  created_on        DateTime  @default(now())
+  user              User      @relation(fields: [userEmail], references: [email])
+  userEmail            String
+  @@map("transactions")
 }

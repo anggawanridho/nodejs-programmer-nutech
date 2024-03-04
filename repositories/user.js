@@ -1,7 +1,15 @@
+import pg from "pg";
+const { Pool } = pg;
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 import "dotenv/config";
 import bcrypt from "bcrypt";
-const prisma = new PrismaClient();
+
+const connectionString = `${process.env.DATABASE_URL}`;
+
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 export const userRegister = async (request) => {
   let user;
@@ -13,12 +21,23 @@ export const userRegister = async (request) => {
         first_name: request.first_name,
         last_name: request.last_name,
         password: await bcrypt.hash(request.password, 10),
+        balance: {
+          create: {},
+        },
+        transactions: {
+          create: {
+            invoice_number: "INITIAL",
+            transaction_type: "CREDIT",
+            total_amount: 0,
+            service_code: "INITIAL",
+            service_name: "Initial Service",
+          },
+        },
       },
     });
   } catch (err) {
     throw err;
   }
-
   return user;
 };
 

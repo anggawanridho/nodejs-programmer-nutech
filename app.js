@@ -1,11 +1,9 @@
 import createError from "http-errors";
 import express from "express";
-import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/userRouter.js";
+import { userRouter, transactionRouter } from "./routes/index.js";
 
 const app = express();
 
@@ -15,8 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(cors());
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/users", userRouter);
+app.use("/transactions", transactionRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

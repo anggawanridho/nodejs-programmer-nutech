@@ -1,9 +1,2 @@
-import express from "express";
-const router = express.Router();
-
-/* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
-});
-
-export default router;
+export { default as userRouter } from "./userRouter.js";
+export { default as transactionRouter } from "./transactionRouter.js";

@@ -2,15 +2,13 @@
   "name": "nodejs-programmer-nutech",
   "version": "0.0.0",
   "private": true,
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
-    "start": "npx prisma generate && nodemon ./bin/www",
+    "start": "npx prisma generate && npx prisma migrate deploy && nodemon ./bin/www",
     "start-debug": "npx prisma generate && DEBUG=nodejs-programmer-nutech:server nodemon ./bin/www"
   },
   "type": "module",
   "dependencies": {
+    "@prisma/adapter-pg": "^5.10.2",
     "@prisma/client": "^5.10.2",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.0.2",
@@ -25,6 +23,7 @@
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0",
+    "pg": "^8.11.3",
     "prisma": "^5.10.2"
   },
   "devDependencies": {

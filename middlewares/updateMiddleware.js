@@ -12,6 +12,11 @@ export default async (req, res, next) => {
     first_name: Joi.string().trim().optional(),
     last_name: Joi.string().trim().optional(),
     profile_picture: Joi.string().trim().optional(),
+    top_up_amount: Joi.number().min(0).optional().messages({
+      "number.min":
+        "Parameter amount hanya boleh angka dan tidak boleh lebih kecil dari 0",
+    }),
+    service_code: Joi.string().trim().optional(),
   });
 
   try {

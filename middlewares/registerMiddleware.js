@@ -13,13 +13,11 @@ export default async (req, res, next) => {
       .min(8)
       .max(128)
       .trim()
-      .pattern(
-        /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,24}$/,
-        "password"
-      )
+      .pattern(/^(?=.*\d)[A-Za-z\d]{8,128}$/, "password")
+      // .pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,24}$/, "password") // pakai yang ini bila ingin lebih bagus
       .messages({
         "any.required":
-          "Password must be 8-128 characters long, and include at least one uppercase letter, one number, and one special character.",
+          "Password harus berisi 8-128 karakter, dan mencakup setidaknya satu huruf besar, satu angka, dan satu karakter khusus.",
       }),
   });
 

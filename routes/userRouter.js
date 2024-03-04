@@ -5,12 +5,6 @@ import {
   userDetail,
   updateUser,
   userImage,
-  // deleteuser,
-  // verifyUser,
-  // fetchAllUser,
-  // updatePass,
-  // resetPass,
-  // verifyEmail,
 } from "../controllers/userController.js";
 import {
   registerMiddleware,
