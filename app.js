@@ -3,7 +3,11 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
-import { userRouter, transactionRouter } from "./routes/index.js";
+import {
+  userRouter,
+  transactionRouter,
+  informationRouter,
+} from "./routes/index.js";
 
 const app = express();
 
@@ -15,6 +19,7 @@ app.use(cookieParser());
 app.use(cors());
 app.use("/users", userRouter);
 app.use("/transactions", transactionRouter);
+app.use("/information", informationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

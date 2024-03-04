@@ -45,3 +45,20 @@ model Transaction {
   userEmail            String
   @@map("transactions")
 }
+
+model Banner {
+  id          Int     @id @default(autoincrement())
+  banner_name String
+  banner_image String
+  description String
+  @@map("banners")
+}
+
+model Service {
+  id             Int     @id @default(autoincrement())
+  service_code   String
+  service_name   String
+  service_icon   String
+  service_tariff Int
+  @@map("services")
+}
